@@ -39,8 +39,9 @@ class CameraViewer(camera_viewer_ui.Ui_MainWindow, QMainWindow):
         self.cam = py.InstantCamera(self.tlf.CreateDevice(cam_dev))
         self.cam.Open()
         if self.cam.IsOpen():
-            self.cam.TriggerSelector = "FrameStart"
-            self.cam.TriggerSource = "Software"
+            self.cam.TriggerMode.SetValue("On")
+            self.cam.TriggerSelector.SetValue("FrameStart")
+            self.cam.TriggerSource.SetValue("Software")
             self.cam.StartGrabbing(py.GrabStrategy_LatestImageOnly)
             if self.cam.IsGrabbing():
                 self.pushButtonStart.setEnabled(False)
